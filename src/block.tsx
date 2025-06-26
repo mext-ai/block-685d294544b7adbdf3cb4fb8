@@ -40,7 +40,7 @@ const Block: React.FC<BlockProps> = ({ title, description }) => {
         margin: 0,
         padding: '20px'
       }}>
-        Hi my name CLAUUUUUDe
+        I'm FABIEN
       </h1>
     </div>
   );
