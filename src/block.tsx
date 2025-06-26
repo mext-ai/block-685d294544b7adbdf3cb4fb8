@@ -1,27 +1,46 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 interface BlockProps {
+  title?: string;
+  description?: string;
 }
 
-const Block: React.FC<BlockProps> = () => {
+const Block: React.FC<BlockProps> = ({ title, description }) => {
+  // Send completion event immediately since this is just a display block
+  React.useEffect(() => {
+    const sendCompletion = () => {
+      window.postMessage({ 
+        type: 'BLOCK_COMPLETION', 
+        blockId: '685d294544b7adbdf3cb4fb8', 
+        completed: true 
+      }, '*');
+      window.parent.postMessage({ 
+        type: 'BLOCK_COMPLETION', 
+        blockId: '685d294544b7adbdf3cb4fb8', 
+        completed: true 
+      }, '*');
+    };
+    
+    sendCompletion();
+  }, []);
+
   return (
     <div style={{
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
       height: '100vh',
-      fontFamily: 'Arial, sans-serif',
-      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-      margin: 0,
-      color: 'white'
+      backgroundColor: '#f0f0f0',
+      fontFamily: 'Arial, sans-serif'
     }}>
       <h1 style={{
-        fontSize: '3rem',
+        fontSize: '2.5rem',
+        color: '#333',
         textAlign: 'center',
-        textShadow: '2px 2px 4px rgba(0,0,0,0.3)',
-        margin: 0
+        margin: 0,
+        padding: '20px'
       }}>
-        Hi there, I'm an empty block ✨
+        Hi my name CLAUUUUUDe
       </h1>
     </div>
   );
